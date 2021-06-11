@@ -2,6 +2,8 @@ import { Colors } from "./PaintColors.js"
 import { InteriorsFabric} from "./Interiors.js"
 import { TechPackages } from "./TechPackages.js"
 import { WheelStyles} from "./WheelStyles.js"
+import { Orders } from "./Order.js"
+import { addOrder } from "./database.js"
 
 export const OverallHTML = () => { 
     return `
@@ -17,7 +19,7 @@ export const OverallHTML = () => {
                 ${InteriorsFabric()}
             </section>
             <section class="choices__technologies options">
-                <h2>Tech Packagess</h2>
+                <h2>Tech Packages</h2>
                 ${TechPackages()}
             </section>
             <section class="choices__wheels options">
@@ -27,12 +29,21 @@ export const OverallHTML = () => {
         </article>
 
         <article>
-            <button id="orderButton">Create Custom Order</button>
+            <button id="orderButton">Submit Order</button>
         </article>
 
         <article class="customOrders">
-            <h2>Custom Orders</h2>
-            
+            <h2>Orders</h2>
+            ${Orders()}
         </article>
     `
 }
+
+document.addEventListener(
+    "click",
+    (event) => { const clickItem = event.target
+        if (clickItem.id === "orderButton"){
+            addOrder()
+        }
+    }
+)

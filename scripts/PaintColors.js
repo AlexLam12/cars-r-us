@@ -1,4 +1,4 @@
-import { getColors } from "./database.js"
+import { getColors, setColor } from "./database.js"
 
 const colors = getColors()
 
@@ -15,3 +15,12 @@ export const Colors = () => {
     html += "</ul>"
     return html
 }
+
+document.addEventListener(
+    "click",
+    (event) => {
+        if (event.target.name === "color") {
+            setColor(parseInt(event.target.value))
+        }
+    }
+)
