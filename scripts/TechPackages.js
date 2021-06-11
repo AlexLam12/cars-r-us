@@ -1,4 +1,4 @@
-import { getTechnologies } from "./database.js"
+import { getTechnologies, setTechnology } from "./database.js"
 
 const techPackages = getTechnologies()
 
@@ -8,10 +8,19 @@ export const TechPackages = () => {
     
     for (const techPackage of techPackages) {
         html += `<li>
-        <input type="radio" name="techpackage" value="${techPackage.id}" /> ${techPackage.techPackage}
+        <input type="radio" name="techPackage" value="${techPackage.id}" /> ${techPackage.techPackage}
         </li>`
     }
     
     html += "</ul>"
     return html
 }
+
+document.addEventListener(
+    "click",
+    (event) => {
+        if (event.target.name === "techPackage") { 
+            setTechnology(parseInt(event.target.value))
+        }
+    }
+)

@@ -23,23 +23,40 @@ const database = {
         {id: 3, style: "18-inch Pair Spoke Silver", price: 300},
         {id: 4, style: "18-inch Pair Spoke Black", price: 375}
     ],
-    costomOrders: [
+    orders: [
         {}
-    ]
+    ],
+    orderBuilder: {},
 }
 
-export const getColors = () => {
-    return database.colors.map(color => ({...color}))
+export const getColors = () => [...database.colors]
+
+export const getInteriors = () => [...database.interiors]
+
+export const getTechnologies = () => [...database.technologies]
+
+export const getWheels = () => [...database.wheels]
+
+export const getOrders = () => [...database.orders]
+
+export const setColor = (id) => {
+    database.orderBuilder.colorId = id
+}
+export const setInerior = (id) => {
+    database.orderBuilder.interiorId = id
+}
+export const setTechnology = (id) => {
+    database.orderBuilder.technologyId = id
+}
+export const setWheel = (id) => {
+    database.orderBuilder.wheelId = id
 }
 
-export const getInteriors = () => {
-    return database.interiors.map(interior => ({...interior}))
-}
-
-export const getTechnologies = () => {
-    return database.technologies.map(techPackage => ({...techPackage}))
-}
-
-export const getWheels = () => {
-    return database.wheels.map(style => ({...style}))
+export const addOrder = () => {
+    const newOrder = {...database.orderBuilder}
+    const lastIndex = database.orders.length - 1
+    newOrder.id = database.orders[lastIndex].id + 1
+    newOrder.timestamp = Date.now()
+    database.orderBuilder = {}
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
