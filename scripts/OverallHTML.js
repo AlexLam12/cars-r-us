@@ -41,8 +41,8 @@ export const OverallHTML = () => {
 
 document.addEventListener(
     "click",
-    (event) => { const clickItem = event.target
-        if (clickItem.id === "orderButton"){
+    (event) => {
+        if (event.target.id === "orderButton"){
             addOrder()
         }
     }
