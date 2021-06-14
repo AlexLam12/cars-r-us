@@ -16,11 +16,23 @@ export const Colors = () => {
     return html
 }
 
+// document.addEventListener(
+//     "click",
+//     (event) => {
+//         if (event.target.name === "color") {
+//             setColor(parseInt(event.target.value))
+//         }
+//     }
+// )
+
 document.addEventListener(
-    "click",
-    (event) => {
-        if (event.target.name === "color") {
-            setColor(parseInt(event.target.value))
+    "change",
+    (event) => {if (event.target.name === "color"){
+        const chosenColor = colors.find(color => {
+           return color.id === parseInt(event.target.value)
+        })
+        window.alert(`User chose color ${chosenColor.color}`)
+        setColor(parseInt(event.target.value))
         }
     }
 )

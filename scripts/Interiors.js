@@ -1,4 +1,4 @@
-import { getInteriors, setInerior } from "./database.js"
+import { getInteriors, setInterior } from "./database.js"
 
 const interiors = getInteriors()
 
@@ -20,7 +20,7 @@ document.addEventListener(
     "click",
     (event) => {
         if (event.target.name === "interior") {
-            setInerior(parseInt(event.target.value))
+            setInterior(parseInt(event.target.value))
         }
     }
 )
